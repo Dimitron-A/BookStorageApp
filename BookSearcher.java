@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookSearcher {
-    private List<Book> books;
+    private final List<Book> books;
 
     public BookSearcher(List<Book> books) {
         this.books = books;

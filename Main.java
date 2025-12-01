@@ -1,43 +1,36 @@
-private static BookManager manager = new BookManager();
-private static Scanner scanner = new Scanner(System.in);
+import java.util.List;
+import java.util.Scanner;
 
-void main() {
-    IO.println("=== Book Management System ===");
+public class Main {
+    private static final BookManager manager = new BookManager();
+    private static final Scanner scanner = new Scanner(System.in);
 
-    boolean running = true;
-    while (running) {
-        displayMenu();
-        int choice = getIntInput("Enter your choice: ");
-
-        switch (choice) {
-            case 1:
-                insertBook();
-                break;
-            case 2:
-                searchBooks();
-                break;
-            case 3:
-                updateBook();
-                break;
-            case 4:
-                deleteBook();
-                break;
-            case 5:
-                manager.displayAllBooks();
-                break;
-            case 6:
-                manager.saveToFile();
-                running = false;
-                IO.println("Goodbye!");
-                break;
-            default:
-                IO.println("Invalid choice. Please try again.");
-        }
+    public static void main(String[] args) {
+        try (scanner) {
+            IO.println("=== Book Management System ===");
+            
+            boolean running = true;
+            while (running) {
+                displayMenu();
+                int choice = getIntInput("Enter your choice: ");
+                
+                switch (choice) {
+                    case 1 -> insertBook();
+                    case 2 -> searchBooks();
+                    case 3 -> updateBook();
+                    case 4 -> deleteBook();
+                    case 5 -> manager.displayAllBooks();
+                    case 6 -> {
+                        manager.saveToFile();
+                        running = false;
+                        IO.println("Goodbye!");
+                    }
+                    default -> IO.println("Invalid choice. Please try again.");
+                }
+            }   }
     }
-    scanner.close();
-}
 
-private static void displayMenu() {
+    private static void displayMenu() {
     IO.println("\n--- Menu ---");
     IO.println("1. Insert Book");
     IO.println("2. Search Books");
@@ -47,7 +40,7 @@ private static void displayMenu() {
     IO.println("6. Exit");
 }
 
-private static void insertBook() {
+    private static void insertBook() {
     IO.println("\n--- Insert Book ---");
     IO.print("Title: ");
     String title = scanner.nextLine();
@@ -68,7 +61,7 @@ private static void insertBook() {
     }
 }
 
-private static void searchBooks() {
+    private static void searchBooks() {
     IO.println("\n--- Search Books ---");
     IO.println("1. Search by Title");
     IO.println("2. Search by Author");
@@ -77,40 +70,39 @@ private static void searchBooks() {
 
     int choice = getIntInput("Enter search type: ");
     BookSearcher searcher = manager.getSearcher();
-    List<Book> results = null;
+    List<Book> results;
 
     switch (choice) {
-        case 1:
+        case 1 -> {
             IO.print("Enter title: ");
             String title = scanner.nextLine();
             results = searcher.searchByTitle(title);
-            break;
-        case 2:
+        }
+        case 2 -> {
             IO.print("Enter author: ");
             String author = scanner.nextLine();
             results = searcher.searchByAuthor(author);
-            break;
-        case 3:
+        }
+        case 3 -> {
             IO.print("Enter ISBN: ");
             String isbn = scanner.nextLine();
             Book book = searcher.searchByIsbn(isbn);
             results = book != null ? List.of(book) : List.of();
-            break;
-        case 4:
+        }
+        case 4 -> {
             int year = getIntInput("Enter year: ");
             results = searcher.searchByYear(year);
-            break;
-        default:
+        }
+        default -> {
             IO.println("Invalid choice.");
             return;
+        }
     }
 
-    if (results != null) {
-        searcher.displaySearchResults(results);
-    }
+    searcher.displaySearchResults(results);
 }
 
-private static void updateBook() {
+    private static void updateBook() {
     IO.println("\n--- Update Book ---");
     IO.print("Enter ISBN of book to update: ");
     String isbn = scanner.nextLine();
@@ -133,7 +125,7 @@ private static void updateBook() {
     }
 }
 
-private static void deleteBook() {
+    private static void deleteBook() {
     IO.println("\n--- Delete Book ---");
     IO.print("Enter ISBN of book to delete: ");
     String isbn = scanner.nextLine();
@@ -146,14 +138,15 @@ private static void deleteBook() {
     }
 }
 
-private static int getIntInput(String prompt) {
-    while (true) {
-        try {
-            IO.print(prompt);
-            String input = scanner.nextLine();
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            IO.println("Invalid number. Please try again.");
+    private static int getIntInput(String prompt) {
+        while (true) {
+            try {
+                IO.print(prompt);
+                String input = scanner.nextLine();
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                IO.println("Invalid number. Please try again.");
+            }
         }
     }
 }

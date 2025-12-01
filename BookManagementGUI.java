@@ -7,7 +7,6 @@ public class BookManagementGUI extends JFrame {
     private final BookManager manager;
     private JTable bookTable;
     private DefaultTableModel tableModel;
-    private JTextField searchField;
 
     public BookManagementGUI() {
         manager = new BookManager();
@@ -265,25 +264,22 @@ public class BookManagementGUI extends JFrame {
             }
 
             BookSearcher searcher = manager.getSearcher();
-            List<Book> results = null;
+            List<Book> results;
 
             try {
-                switch (searchType) {
-                    case "Title":
-                        results = searcher.searchByTitle(searchTerm);
-                        break;
-                    case "Author":
-                        results = searcher.searchByAuthor(searchTerm);
-                        break;
-                    case "ISBN":
+                results = switch (searchType) {
+                    case "Title" -> searcher.searchByTitle(searchTerm);
+                    case "Author" -> searcher.searchByAuthor(searchTerm);
+                    case "ISBN" -> {
                         Book book = searcher.searchByIsbn(searchTerm);
-                        results = book != null ? List.of(book) : List.of();
-                        break;
-                    case "Year":
+                        yield book != null ? List.of(book) : List.of();
+                    }
+                    case "Year" -> {
                         int year = Integer.parseInt(searchTerm);
-                        results = searcher.searchByYear(year);
-                        break;
-                }
+                        yield searcher.searchByYear(year);
+                    }
+                    default -> List.of();
+                };
 
                 displaySearchResults(results);
                 dialog.dispose();

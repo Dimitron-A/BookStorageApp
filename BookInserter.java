@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookInserter {
-    private List<Book> books;
+    private final List<Book> books;
 
     public BookInserter() {
         this.books = new ArrayList<>();
