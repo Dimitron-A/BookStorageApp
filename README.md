@@ -1,6 +1,6 @@
 # Book Management System
 
-A simple Java console application for managing a book collection with insert, search, update, and delete operations.
+A Java application for managing a book collection with both GUI and console interfaces. Features include insert, search, update, and delete operations with data persistence.
 
 ## Features
 
@@ -35,36 +35,38 @@ A simple Java console application for managing a book collection with insert, se
 
 ## How to Run
 
-### Easy Way (Windows)
+### For End Users (Easiest)
 
-1. **Build the JAR file:**
-   - Double-click `build.bat`
-   - This compiles everything and creates `BookManager.jar`
+1. **Download the latest release** from the [Releases](../../releases) page
+2. **Double-click** `BookManagementSystem.jar` to launch the GUI
+3. Make sure you have Java 17+ installed
 
-2. **Run the application:**
-   - Double-click `run.bat`
-   - Or run: `java -jar BookManager.jar`
+### For Developers
 
-### Manual Way
+**Build the distributable JAR:**
 
-**Console Version:**
+Windows:
 ```bash
-javac *.java
-java Main
+build-jar.bat
 ```
 
-**GUI Version (Recommended):**
+macOS/Linux:
+```bash
+./build-jar.sh
+```
+
+**Run directly from source:**
+
+GUI Version (Recommended):
 ```bash
 javac *.java
 java BookManagementGUI
 ```
 
-**Build JAR manually:**
+Console Version:
 ```bash
 javac *.java
-echo Main-Class: BookManagementGUI > manifest.txt
-jar cvfm BookManager.jar manifest.txt *.class
-java -jar BookManager.jar
+java Main
 ```
 
 ## Usage

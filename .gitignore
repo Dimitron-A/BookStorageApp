@@ -1,0 +1,22 @@
+# Compiled class files
+*.class
+bin/
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Build files
+manifest.txt
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Data files (optional - remove this line if you want to include sample data)
+books.dat
