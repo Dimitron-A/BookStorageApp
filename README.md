@@ -2,6 +2,11 @@
 
 A Java application for managing a book collection with both GUI and console interfaces. Features include insert, search, update, and delete operations with data persistence.
 
+## Screenshot
+
+![Book Management System](image/screenshot.png)
+
+
 ## Features
 
 - **Insert Books**: Add new books with title, author, ISBN, and publication year
