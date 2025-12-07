@@ -22,9 +22,6 @@ A Java application for managing a book collection with both GUI and console inte
 ├── InvalidBookException.java # Custom exception
 ├── Main.java                 # Console interface
 ├── BookManagementGUI.java    # GUI interface (recommended)
-├── build.bat                 # Build script (creates JAR)
-├── run.bat                   # Run script
-├── clean.bat                 # Clean build files
 └── README.md                 # This file
 ```
 

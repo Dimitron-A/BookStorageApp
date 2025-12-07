@@ -33,7 +33,7 @@ public class BookValidator {
         
         String cleanIsbn = isbn.replaceAll("[- ]", "");
         
-        if (cleanIsbn.length() >= 10 && cleanIsbn.length() <= 13) {
+        if (cleanIsbn.length() != 10 && cleanIsbn.length() != 13) {
             throw new InvalidBookException("ISBN must be 10 or 13 digits");
         }
         
